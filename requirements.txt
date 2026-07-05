@@ -1,0 +1,8 @@
+requests
+pandas
+streamlit
+plotly
+google-generativeai
+python-dotenv
+scikit-learn
+pdfplumber
