@@ -2,7 +2,7 @@
 
 - Live data pipeline — pulls real job postings from the Adzuna API (title, company, city, salary, description)
 - Skill extraction — scans job descriptions against a curated skills dictionary to surface in-demand technologies
-- Onsite vs. remote detection** — keyword-based classification of work mode
+- Onsite vs. remote detection — keyword-based classification of work mode
 - Interactive dashboard — built with Streamlit, includes:
   - Overview KPIs and work-mode/job-title distribution
   - Skills demand ranking and share-of-mentions breakdown
