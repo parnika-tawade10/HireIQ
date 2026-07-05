@@ -16,6 +16,40 @@
 - Simulated job alerts — demonstrates a notification workflow (create an alert, simulate a match check) without sending real emails
 - User authentication — simple login/signup system with hashed passwords, gating access to the dashboard
 
+## Setup
+
+```bash
+cd job-analytics
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+cp .env.example .env
+# fill in ADZUNA_APP_ID, ADZUNA_APP_KEY (free at developer.adzuna.com)
+# and ANTHROPIC_API_KEY (console.anthropic.com)
+```
+
+## Run the pipeline
+
+```bash
+python etl/fetch_adzuna.py     # pulls raw JSON into raw_data/
+python etl/clean_load.py       # cleans + loads into db/jobs.db
+streamlit run app.py           # launches the dashboard + chatbot
+```
+
+## Architecture
+
+```
+Adzuna API -> fetch_adzuna.py -> raw_data/*.json
+                                     |
+                              clean_load.py
+                                     |
+                              db/jobs.db (SQLite)
+                              tables: jobs, job_skills
+                                     |
+                                  app.py
+                        (Streamlit dashboard + Claude
+                         text-to-SQL chatbot, same DB)
 ## Tech Stack
 
 | Layer            | Tools                                      |
